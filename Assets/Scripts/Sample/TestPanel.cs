@@ -1,0 +1,30 @@
+using UnityEngine.UI;
+using SimpleUI;
+using UnityEngine;
+
+public class TestPanel : CommonPanel
+{
+    [SerializeField] Text text = null;
+
+    public override bool PreventAction
+    {
+        get
+        {
+            return true;
+        }
+    }
+
+    private string data = null;
+    public override void SetData<DataType>(DataType data)
+    {
+        if (data is string)
+        {
+            this.data = data as string;
+        }
+    }
+
+    protected override void OnShowOver()
+    {
+        text.text = data;
+    }
+}
