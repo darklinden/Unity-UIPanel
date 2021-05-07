@@ -61,23 +61,23 @@ public static class D
 
         StringBuilder result = new StringBuilder();
         result.Append(NowTimeStr());
-        if (message0 != null) result.Append(ObjectToStr(message0));
-        if (message1 != null) result.Append(ObjectToStr(message1));
-        if (message2 != null) result.Append(ObjectToStr(message2));
-        if (message3 != null) result.Append(ObjectToStr(message3));
-        if (message4 != null) result.Append(ObjectToStr(message4));
-        if (message5 != null) result.Append(ObjectToStr(message5));
-        if (message6 != null) result.Append(ObjectToStr(message6));
-        if (message7 != null) result.Append(ObjectToStr(message7));
-        if (message8 != null) result.Append(ObjectToStr(message8));
-        if (message9 != null) result.Append(ObjectToStr(message9));
-        if (message10 != null) result.Append(ObjectToStr(message10));
-        if (message11 != null) result.Append(ObjectToStr(message11));
-        if (message12 != null) result.Append(ObjectToStr(message12));
-        if (message13 != null) result.Append(ObjectToStr(message13));
-        if (message14 != null) result.Append(ObjectToStr(message14));
-        if (message15 != null) result.Append(ObjectToStr(message15));
-        return "";
+        if (message0 != null) result.AppendLine(ObjectToStr(message0));
+        if (message1 != null) result.AppendLine(ObjectToStr(message1));
+        if (message2 != null) result.AppendLine(ObjectToStr(message2));
+        if (message3 != null) result.AppendLine(ObjectToStr(message3));
+        if (message4 != null) result.AppendLine(ObjectToStr(message4));
+        if (message5 != null) result.AppendLine(ObjectToStr(message5));
+        if (message6 != null) result.AppendLine(ObjectToStr(message6));
+        if (message7 != null) result.AppendLine(ObjectToStr(message7));
+        if (message8 != null) result.AppendLine(ObjectToStr(message8));
+        if (message9 != null) result.AppendLine(ObjectToStr(message9));
+        if (message10 != null) result.AppendLine(ObjectToStr(message10));
+        if (message11 != null) result.AppendLine(ObjectToStr(message11));
+        if (message12 != null) result.AppendLine(ObjectToStr(message12));
+        if (message13 != null) result.AppendLine(ObjectToStr(message13));
+        if (message14 != null) result.AppendLine(ObjectToStr(message14));
+        if (message15 != null) result.AppendLine(ObjectToStr(message15));
+        return result.ToString();
     }
 
     public static void Log(object message0, object message1 = null, object message2 = null, object message3 = null,

@@ -17,8 +17,20 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 97bad95717dac41268ba13a898e907e5
   m_SerializeEntries:
-  - m_GUID: 5d9b0fc77cbc94fb8a2c63b074560314
-    m_Address: Assets/UIPanel/TestPanel.prefab
+  - m_GUID: c70f6edadff164112ab8b80683b50795
+    m_Address: Assets/UIPanel/PanelGreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7e41a86d53bee4887bf271f6b4db1f95
+    m_Address: Assets/UIPanel/PanelBlue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 43461aa7be11a4636b7f7f98d8256d38
+    m_Address: Assets/UIPanel/PanelRed.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

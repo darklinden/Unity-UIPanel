@@ -2,8 +2,9 @@ using UnityEngine.UI;
 using SimpleUI;
 using UnityEngine;
 
-public class TestPanel : CommonPanel
+public class PanelBlue : CommonPanel
 {
+    [SerializeField] Text title = null;
     [SerializeField] Text text = null;
 
     public override bool PreventAction
@@ -25,6 +26,7 @@ public class TestPanel : CommonPanel
 
     protected override void OnShowOver()
     {
+        title.text = "I'm Blue";
         text.text = data;
     }
 }

@@ -51,7 +51,9 @@ namespace SimpleUI
 
         private void ChangedActiveScene(Scene current, Scene next)
         {
-            D.Log("ChangedActiveScene: ", current, next);
+            D.Log("ChangedActiveScene: ",
+            current != null ? "current:" + current.name : "no current name",
+            next != null ? "next:" + next.name : "no next name");
 
             scene = next.name;
 
@@ -71,6 +73,8 @@ namespace SimpleUI
                     _panelsOnCurrentScene[k].Clear();
                 }
             }
+
+            Resources.UnloadUnusedAssets();
         }
 
         private void SetPanel(string path, GameObject panel)
@@ -143,7 +147,14 @@ namespace SimpleUI
         {
             Addressables.LoadAssetAsync<GameObject>(path).Completed += (AsyncOperationHandle<GameObject> obj) =>
             {
-                if (loaded != null) loaded.Invoke(obj.Result);
+                if (obj.Status == AsyncOperationStatus.Succeeded)
+                {
+                    loaded?.Invoke(obj.Result);
+                }
+                else
+                {
+                    loaded?.Invoke(null);
+                }
             };
         }
 
@@ -207,7 +218,13 @@ namespace SimpleUI
 
             LoadPrefab(path, (GameObject prefab) =>
             {
-                var p = UnityEngine.Object.Instantiate(prefab);
+                Assert.IsNotNull(prefab);
+
+                var op = Addressables.InstantiateAsync(path);
+
+                Assert.IsTrue(op.IsDone);
+
+                var p = op.Result;
                 var rt = p.transform as RectTransform;
 
                 if (rt != null)
