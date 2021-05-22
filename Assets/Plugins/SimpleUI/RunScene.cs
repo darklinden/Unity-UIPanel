@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,12 +9,17 @@ public class RunScene : MonoBehaviour
 
     public void zzBtnClicked()
     {
-        SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single).completed += (AsyncOperation op) =>
+        StartCoroutine(LoadSceneAsync());
+    }
+
+    IEnumerator LoadSceneAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneName);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
         {
-            if (op.isDone)
-            {
-                op.allowSceneActivation = true;
-            }
-        };
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

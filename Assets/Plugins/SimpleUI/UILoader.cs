@@ -194,7 +194,7 @@ namespace SimpleUI
                             MarkPanelWontPreventAction(path);
                         });
 
-                        if (data != null) c.SetData<DataType>(data);
+                        if (data != null) c.SetData((System.Object)data);
                         preventAction = c.PreventAction;
                     }
                     catch (Exception e)
@@ -244,7 +244,7 @@ namespace SimpleUI
                                 MarkPanelWontPreventAction(path);
                             });
 
-                            if (data != null) c.SetData<DataType>(data);
+                            if (data != null) c.SetData((System.Object)data);
                             preventAction = c.PreventAction;
                         }
                         catch (Exception e)

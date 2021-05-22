@@ -1,17 +1,14 @@
 ﻿using System;
 using DigitalRuby.Tween;
-using Lib;
 using UnityEngine;
 
 namespace SimpleUI
 {
-#if UNITY_EDITOR
-    [RequireComponent(typeof(RectTransformSizeFitEditorSupport))]
-#endif
     public class RectTransformSizeFit : MonoBehaviour
     {
         private enum EnumFitType
         {
+            eNone = 0,
             WidthLimit = 1,
             HeightLimit = 2
         }
@@ -24,7 +21,7 @@ namespace SimpleUI
 
         [SerializeField] private EFitAction _fitAction = EFitAction.eFitOnEnable;
 
-        [SerializeField] private EnumFitType _fitType;
+        [SerializeField] private EnumFitType _fitType = EnumFitType.eNone;
 
         [SerializeField] private float _maxRateLimitInParent = 1;
         [SerializeField] private float _minRateLimitInParent = 0;
@@ -36,7 +33,7 @@ namespace SimpleUI
 
         public RectTransform _parentRt;
         public RectTransform _rt;
-        private bool _autoFit = true;
+        private bool _autoFit = false;
 
         public void RefreshRate()
         {
@@ -163,8 +160,6 @@ namespace SimpleUI
                     _rt.localScale = FitHeight();
                     _heightRateOfParent = _rt.rect.height * _rt.localScale.y / _parentRt.rect.height;
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -180,7 +175,8 @@ namespace SimpleUI
                     s = FitHeight();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    s = Vector3.one;
+                    break;
             }
 
             return s;
@@ -222,6 +218,18 @@ namespace SimpleUI
             }, (t) =>
             {
                 _autoFit = true;
+                switch (_fitType)
+                {
+                    case EnumFitType.WidthLimit:
+                        _rt.localScale = FitWidth();
+                        _widthRateOfParent = _rt.rect.width * _rt.localScale.x / _parentRt.rect.width;
+                        break;
+                    case EnumFitType.HeightLimit:
+                        _rt.localScale = FitHeight();
+                        _heightRateOfParent = _rt.rect.height * _rt.localScale.y / _parentRt.rect.height;
+                        break;
+                }
+
                 completion?.Invoke();
             });
         }

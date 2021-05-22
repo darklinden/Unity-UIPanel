@@ -2,6 +2,7 @@
 using SimpleUI;
 using UnityEngine;
 
+[RequireComponent(typeof(ButtonEffect.ButtonSoundEffect)), DisallowMultipleComponent]
 public class UILoaderBtn : MonoBehaviour
 {
     [SerializeField] public String PanelName = "";
@@ -9,6 +10,9 @@ public class UILoaderBtn : MonoBehaviour
 
     public void zzBtnClicked()
     {
-        UILoader.Show<string>(PanelName, SimpleData);
+        if (!string.IsNullOrEmpty(SimpleData))
+            UILoader.Show<string>(PanelName, SimpleData);
+        else
+            UILoader.Show(PanelName);
     }
 }

@@ -43,10 +43,10 @@ namespace SimpleUI
             _panelClosedCall = callback;
         }
 
-        public virtual void SetData<DataType>(DataType data)
+        public virtual void SetData(System.Object data)
         {
-            D.Error("CommonPanel.setData No Implementation: ", this.name);
-            D.Error(data);
+            D.Warning("CommonPanel.setData No Implementation: ", this.name);
+            D.Warning(data);
         }
 
         public virtual bool PreventAction

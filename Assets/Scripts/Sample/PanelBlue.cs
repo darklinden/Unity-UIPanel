@@ -16,7 +16,7 @@ public class PanelBlue : CommonPanel
     }
 
     private string data = null;
-    public override void SetData<DataType>(DataType data)
+    public override void SetData(System.Object data)
     {
         if (data is string)
         {

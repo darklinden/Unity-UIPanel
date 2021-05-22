@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-namespace Lib
+public class ReadOnlyAttribute : PropertyAttribute
 {
-    public class ReadOnlyAttribute : PropertyAttribute
-    {
-    }
 }
