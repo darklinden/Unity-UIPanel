@@ -398,7 +398,7 @@ RectTransform:
   m_GameObject: {fileID: 8433736269161599880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8433736267982748585}
   - {fileID: 8433736268430714950}
@@ -425,10 +425,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fitAction: 1
   _fitType: 1
-  _maxRateLimitInParent: 1
+  _maxRateLimitInParent: 0.8
   _minRateLimitInParent: 0
-  _widthRateOfParent: NaN
-  _heightRateOfParent: 0.6510417
+  _widthRateOfParent: 0.776699
+  _heightRateOfParent: 1.0438414
   _ratioWH: 1.6
   _parentRt: {fileID: 8433736268314648112}
   _rt: {fileID: 8433736269161599883}

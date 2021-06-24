@@ -68,7 +68,7 @@ namespace SimpleUI
                 {
                     foreach (var j in _panelsOnCurrentScene[k].Keys)
                     {
-                        if (_panelsOnCurrentScene[k][j] != null) UnityEngine.Object.Destroy(_panelsOnCurrentScene[k][j]);
+                        if (_panelsOnCurrentScene[k][j] != null) Addressables.ReleaseInstance(_panelsOnCurrentScene[k][j]);
                     }
                     _panelsOnCurrentScene[k].Clear();
                 }
@@ -143,9 +143,9 @@ namespace SimpleUI
             Instance._MarkPanelClosed(key);
         }
 
-        private void LoadPrefab(string path, Action<GameObject> loaded)
+        private void InstantiatePrefab(string path, Action<GameObject> loaded)
         {
-            Addressables.LoadAssetAsync<GameObject>(path).Completed += (AsyncOperationHandle<GameObject> obj) =>
+            Addressables.InstantiateAsync(path).Completed += (AsyncOperationHandle<GameObject> obj) =>
             {
                 if (obj.Status == AsyncOperationStatus.Succeeded)
                 {
@@ -216,25 +216,19 @@ namespace SimpleUI
 
             // WaitView.Show();
 
-            LoadPrefab(path, (GameObject prefab) =>
+            InstantiatePrefab(path, (GameObject panel) =>
             {
-                Assert.IsNotNull(prefab);
+                Assert.IsNotNull(panel);
 
-                var op = Addressables.InstantiateAsync(path);
-
-                Assert.IsTrue(op.IsDone);
-
-                var p = op.Result;
-                var rt = p.transform as RectTransform;
-
+                var rt = panel.transform as RectTransform;
                 if (rt != null)
                 {
                     SetPanel(path, rt.gameObject);
 
                     bool preventAction = true;
                     CommonPanel c = null;
-                    if (PanelType != null) c = (CommonPanel)p.GetComponent(PanelType);
-                    if (c == null) c = p.GetComponent<CommonPanel>();
+                    if (PanelType != null) c = (CommonPanel)panel.GetComponent(PanelType);
+                    if (c == null) c = panel.GetComponent<CommonPanel>();
                     if (c != null)
                     {
                         try
